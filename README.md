@@ -13,6 +13,11 @@
 - Styled components https://styled-components.com/docs
 - NASA Images and Video Library API https://api.nasa.gov/
 
+## NPM libraries added
+
+- Axios: https://www.npmjs.com/package/axios
+- Humps: https://www.npmjs.com/package/humps
+
 ## Task details
 
 You will be building a form which will fetch assets from the NASA Images and Video Library API. The fields will provide filters for the query. The media returned should be displayed below the form for the user. The user should only see the first 10 items.
