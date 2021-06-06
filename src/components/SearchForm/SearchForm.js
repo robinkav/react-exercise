@@ -12,7 +12,7 @@ import {
   FilterWrapper,
   FormSubmitWrapper,
   FormSearchWrapper,
-} from "../../shared/theme";
+} from "./SearchFormStyles";
 
 const SearchForm = ({ onSubmit, formikRef }) => {
   const maxFilterYear = new Date().getFullYear();

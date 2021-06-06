@@ -46,7 +46,7 @@ const formatItem = (item) => {
   } = data;
 
   const commonProps = {
-    dateCreated,
+    dateCreated: new Date(dateCreated).toLocaleDateString('en-uk'),
     description,
     nasaId,
     secondaryCreator,

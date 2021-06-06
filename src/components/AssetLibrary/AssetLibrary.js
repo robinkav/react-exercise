@@ -4,6 +4,7 @@ import Audio from "../Assets/Audio";
 import Video from "../Assets/Video";
 import Image from "../Assets/Image";
 import { MEDIATYPES } from "../../shared/constants";
+import { AssetLibraryWrapper } from "./AssetLibraryStyles";
 
 const AssetLibrary = ({ assets }) => {
   const [audio, video, image] = MEDIATYPES;
@@ -46,11 +47,11 @@ const AssetLibrary = ({ assets }) => {
   };
 
   return (
-    <div>
+    <AssetLibraryWrapper>
       {assets.map((asset) => {
         return switchAsset(asset);
       })}
-    </div>
+    </AssetLibraryWrapper>
   );
 };
 
