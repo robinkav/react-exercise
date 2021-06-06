@@ -11,7 +11,7 @@ describe("AssetLibrary", () => {
     );
   });
 
-  it("Renders the correct number of assets based on type", async () => {
+  test("Renders the correct number of assets based on type", async () => {
     const imageAssets = await screen.findAllByTestId(/imgAsset/i);
     const audioAssets = await screen.findAllByTestId(/audioAsset/i);
     const videoAssets = await screen.findAllByTestId(/videoAsset/i);

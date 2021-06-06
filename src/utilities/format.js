@@ -3,13 +3,30 @@ import { MEDIATYPES } from "./../shared/constants";
 
 const format = {
   search: ({ collection }) => {
-    return collection.items.slice(0, 10).map((item) => formatItem(item));
+    const validAssets = [];
+    let counter = 0;
+    if (!collection || !collection.items) return [];
+
+    while (
+      validAssets &&
+      validAssets.length < 10 &&
+      collection.items[counter]
+    ) {
+      const formattedAsset = formatItem(collection.items[counter]);
+      if (formattedAsset) {
+        validAssets.push(formattedAsset);
+      }
+      counter++;
+    }
+    return validAssets;
   },
 };
 
 const formatItem = (item) => {
   const [audio, video, image] = MEDIATYPES;
   const camelizedItem = camelizeJSON(item);
+  if (!camelizedItem || !camelizedItem.data || !camelizedItem.links) return;
+
   const data = camelizedItem.data[0];
   const link = camelizedItem.links[0];
   const {
