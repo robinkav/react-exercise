@@ -12,7 +12,12 @@ const Search = () => {
   const formikRef = useRef(null);
 
   const onSubmit = (values) => {
-    service.get("search", { params: { ...values } }, handleResponse);
+    service.get(
+      "search",
+      { params: { ...values } },
+      { removeEmptyFilters: true },
+      handleResponse
+    );
   };
 
   const handleResponse = (error, data) => {
@@ -28,7 +33,7 @@ const Search = () => {
   return (
     <>
       {error && (
-        <PopOver position="top">
+        <PopOver position="top" style={{"width":"100%"}}>
           <AlertBanner data-testid="lblApiError">
             <ErrorText>An error occurred</ErrorText>
           </AlertBanner>

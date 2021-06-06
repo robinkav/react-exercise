@@ -20,6 +20,13 @@ const format = {
     }
     return validAssets;
   },
+  removeEmptyFilters: (params) => {
+    for (const key of Object.keys(params)) {
+      if (params[key].trim() === "") {
+        delete params[key];
+      }
+    }
+  }
 };
 
 const formatItem = (item) => {
