@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Audio from "./assets/Audio";
-import Video from "./assets/Video";
-import Image from "./assets/Image";
-import { MEDIATYPES } from "./../shared/constants";
+import Audio from "../Assets/Audio";
+import Video from "../Assets/Video";
+import Image from "../Assets/Image";
+import { MEDIATYPES } from "../../shared/constants";
 
 const AssetLibrary = ({ assets }) => {
   const [audio, video, image] = MEDIATYPES;
@@ -13,6 +13,26 @@ const AssetLibrary = ({ assets }) => {
       case image:
         return (
           <Image
+            key={asset.nasaId}
+            dateCreated={asset.dateCreated}
+            description={asset.description}
+            title={asset.title}
+            href={asset.href}
+          />
+        );
+      case audio:
+        return (
+          <Audio
+            key={asset.nasaId}
+            dateCreated={asset.dateCreated}
+            description={asset.description}
+            title={asset.title}
+            href={asset.href}
+          />
+        );
+      case video:
+        return (
+          <Video
             key={asset.nasaId}
             dateCreated={asset.dateCreated}
             description={asset.description}

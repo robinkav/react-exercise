@@ -34,3 +34,16 @@ export const FormSubmitWrapper = styled.div`
   flex-direction: column;
   padding: 1rem;
 `;
+
+export const Banner = styled.div`
+  padding: 0.75rem 1.25rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  width: 100%;
+`;
+
+export const AlertBanner = styled(Banner)`
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+`;

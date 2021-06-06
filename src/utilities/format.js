@@ -2,9 +2,6 @@ import { camelizeKeys } from "humps";
 import { MEDIATYPES } from "./../shared/constants";
 
 const format = {
-  asset: ({ collection }) => {
-    return formatItem(collection.items[0]);
-  },
   search: ({ collection }) => {
     return collection.items.slice(0, 10).map((item) => formatItem(item));
   },

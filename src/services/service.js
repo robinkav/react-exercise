@@ -14,7 +14,6 @@ class Service {
       .get(path, config)
       .then((response) => callback(null, response.data))
       .catch((error) => {
-        console.error(error.message);
         callback(error.response);
       });
   }

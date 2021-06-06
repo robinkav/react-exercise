@@ -7,6 +7,7 @@ const Image = ({dateCreated, description, nasaId, title, href}) => {
         src={href}
         alt={title}
         title={title}
+        data-testid="imgAsset"
       />
     )
 }
