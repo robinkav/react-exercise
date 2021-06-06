@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Audio from "../Assets/Audio";
-import Video from "../Assets/Video";
-import Image from "../Assets/Image";
+import Audio from "../Assets/Audio/Audio";
+import Video from "../Assets/Video/Video";
+import Image from "../Assets/Image/Image";
 import { MEDIATYPES } from "../../shared/constants";
 import { AssetLibraryWrapper } from "./AssetLibraryStyles";
 
@@ -19,6 +19,7 @@ const AssetLibrary = ({ assets }) => {
             description={asset.description}
             title={asset.title}
             href={asset.href}
+            nasaId={asset.nasaId}
           />
         );
       case audio:
@@ -28,7 +29,8 @@ const AssetLibrary = ({ assets }) => {
             dateCreated={asset.dateCreated}
             description={asset.description}
             title={asset.title}
-            href={asset.href}
+            src={asset.src}
+            nasaId={asset.nasaId}
           />
         );
       case video:
@@ -38,7 +40,8 @@ const AssetLibrary = ({ assets }) => {
             dateCreated={asset.dateCreated}
             description={asset.description}
             title={asset.title}
-            href={asset.href}
+            src={asset.src}
+            nasaId={asset.nasaId}
           />
         );
       default:

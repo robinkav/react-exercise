@@ -62,7 +62,7 @@ const SearchForm = ({ onSubmit, formikRef }) => {
         isSubmitting,
       }) => {
         return (
-          <Form onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit} role="search">
             <FormSearchWrapper>
               <KeywordsFilterWrapper>
                 <Field name="keywords">
@@ -77,6 +77,8 @@ const SearchForm = ({ onSubmit, formikRef }) => {
                         required
                         data-testid="txtKeywords"
                         aria-describedby="keywordsError"
+                        aria-required="true"
+                        aria-invalid={!!errors.keywords}
                         {...field}
                       />
                       {errors.keywords && touched.keywords && (
@@ -102,6 +104,7 @@ const SearchForm = ({ onSubmit, formikRef }) => {
                         onBlur={handleBlur}
                         data-testid="ddlMediaType"
                         aria-describedby="mediaTypeError"
+                        aria-required="true"
                         {...field}
                       >
                         <option key="default"></option>
@@ -134,6 +137,8 @@ const SearchForm = ({ onSubmit, formikRef }) => {
                         onBlur={handleBlur}
                         data-testid="txtYearStart"
                         aria-describedby="yearStartError"
+                        aria-required="true"
+                        aria-invalid={!!errors.year_start}
                         {...field}
                       />
                       {errors.year_start && touched.year_start && (
@@ -153,6 +158,7 @@ const SearchForm = ({ onSubmit, formikRef }) => {
                 type="submit"
                 disabled={isSubmitting}
                 data-testid="btnSubmitSearch"
+                role="button"
               >
                 {isSubmitting ? "Submitting..." : "Submit"}
               </Button>

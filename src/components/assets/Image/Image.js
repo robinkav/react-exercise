@@ -4,17 +4,17 @@ import {
   AssetImage,
   AssetDescription,
   AssetDateCreated,
-} from "./AssetStyles";
+} from "../AssetStyles";
 
 const Image = ({ dateCreated, nasaId, title, href }) => {
   return (
-    <AssetWrapper>
+    <AssetWrapper data-testid="imgAsset">
       <AssetImage
         key={nasaId}
         src={href}
         alt={title}
         title={title}
-        data-testid="imgAsset"
+        data-testid={nasaId}
       />
       <AssetDescription>{title}</AssetDescription>
       <AssetDateCreated>Created: {dateCreated}</AssetDateCreated>

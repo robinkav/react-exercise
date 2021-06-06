@@ -34,14 +34,14 @@ const Search = () => {
     <>
       {error && (
         <PopOver position="top" style={{"width":"100%"}}>
-          <AlertBanner data-testid="lblApiError">
-            <ErrorText>An error occurred</ErrorText>
+          <AlertBanner data-testid="lblApiError" role="alert">
+            <ErrorText role="alert">An error occurred</ErrorText>
           </AlertBanner>
         </PopOver>
       )}
       <Heading>NASA Image and Video Library</Heading>
       <SearchForm onSubmit={onSubmit} formikRef={formikRef} />
-      <AssetLibrary assets={assets} />
+      <AssetLibrary assets={assets}/>
     </>
   );
 };

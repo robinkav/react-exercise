@@ -26,16 +26,31 @@ const format = {
         delete params[key];
       }
     }
-  }
+  },
+  getImage: ({ links = [] }) => {
+    const [first = {}] = links;
+    const { href = "/images/not-found.png" } = first;
+    return href;
+  },
+  getAudio: (link) => {
+
+    //get src
+    return "/audio";
+  },
+  getVideo: (link) => {
+
+    //get src
+    return "/video";
+  },
 };
 
 const formatItem = (item) => {
   const [audio, video, image] = MEDIATYPES;
   const camelizedItem = camelizeJSON(item);
-  if (!camelizedItem || !camelizedItem.data || !camelizedItem.links) return;
+  if (!camelizedItem || !camelizedItem.data) return;
 
   const data = camelizedItem.data[0];
-  const link = camelizedItem.links[0];
+
   const {
     dateCreated,
     description,
@@ -46,7 +61,7 @@ const formatItem = (item) => {
   } = data;
 
   const commonProps = {
-    dateCreated: new Date(dateCreated).toLocaleDateString('en-uk'),
+    dateCreated: new Date(dateCreated).toLocaleDateString("en-uk"),
     description,
     nasaId,
     secondaryCreator,
@@ -56,11 +71,11 @@ const formatItem = (item) => {
 
   switch (mediaType) {
     case audio:
-      return { ...commonProps, ...getAudio(link) };
+      return { ...commonProps, ...format.getAudio() };
     case image:
-      return { ...commonProps, href: getImage(link) };
+      return { ...commonProps, href: format.getImage(camelizedItem) };
     case video:
-      return { ...commonProps, ...getVideo(link) };
+      return { ...commonProps, ...format.getVideo() };
     default:
       return commonProps;
   }
@@ -70,17 +85,5 @@ const camelizeJSON = (json) =>
   camelizeKeys(json, (key, convert) => {
     return /^[A-Z0-9_]+$/.test(key) ? key : convert(key);
   });
-
-const getImage = ({ href }) => {
-  return href;
-};
-
-const getAudio = (link) => {
-  return "/audio";
-};
-
-const getVideo = (link) => {
-  return "/video";
-};
 
 export default format;

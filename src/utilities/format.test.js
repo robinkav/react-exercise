@@ -474,4 +474,24 @@ describe("format", () => {
       expect(params).toEqual(expectedOutput);
     });
   });
+
+  describe("getImage", () => {
+    test("Returns a default fallback when no link is present", () => {
+      const item = { links: []};
+      const expected = "/images/not-found.png";
+
+      const result = format.getImage(item);
+
+      expect(result).toEqual(expected);
+    });
+
+    test("Returns the correct link when available", () => {
+      const item = { links: [ { href: "apollo11.png" }]};
+      const expected = "apollo11.png";
+
+      const result = format.getImage(item);
+
+      expect(result).toEqual(expected);
+    });
+  });
 });
