@@ -2,7 +2,7 @@
 
 ## Task details
 
-This application consists of a form which will fetches assets from the NASA Images and Video Library API.
+This application consists of a form which fetches assets from the NASA Images and Video Library API.
 
 ## Documentation for tools used
 
