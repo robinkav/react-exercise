@@ -1,8 +1,13 @@
 import { render, screen } from "@testing-library/react";
 import { ThemeProvider } from "styled-components";
 import AssetLibrary from "./AssetLibrary";
+import Service from "../../services/service";
 
 describe("AssetLibrary", () => {
+  beforeAll(() => {
+    Service.get = jest.fn();
+  });
+
   beforeEach(() => {
     render(
       <ThemeProvider theme={{}}>

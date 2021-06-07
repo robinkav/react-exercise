@@ -1,19 +1,21 @@
 import { useRef, useState } from "react";
 import { ErrorText, Heading, PopOver } from "@cruk/cruk-react-components";
-import service from "../../services/service";
 import format from "../../utilities/format";
 import SearchForm from "../../components/SearchForm/SearchForm";
 import AssetLibrary from "../../components/AssetLibrary/AssetLibrary";
 import { AlertBanner } from "../../shared/theme";
+import { NASA_BASEURL } from "../../shared/constants";
+import Service from "../../services/service";
 
 const Search = () => {
   const [error, setError] = useState(false);
   const [assets, setAssets] = useState([]);
   const formikRef = useRef(null);
+  
 
   const onSubmit = (values) => {
-    service.get(
-      "search",
+    Service.get(
+      `${NASA_BASEURL}/search`,
       { params: { ...values } },
       { removeEmptyFilters: true },
       handleResponse

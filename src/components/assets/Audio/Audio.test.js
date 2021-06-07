@@ -1,20 +1,27 @@
 import { render, screen } from "@testing-library/react";
 import Audio from "./Audio";
+import Service from "../../../services/service";
 
 describe("Audio", () => {
-  test("renders correctly based on props", async () => {
+  beforeAll(() => {
+    Service.get = jest.fn();
+  });
+
+  beforeEach(() => {
     render(
       <Audio
-        dateCreated="06/06/2021"
-        nasaId="123"
-        title="This is a sample audio file"
-        src="https://www.sampleaudio.co.uk/1.mp3"
+        dateCreated="10/04/2020"
+        nasaId="Ep139_Apollo 13"
+        title="HWHAP Ep139 Apollo 13"
+        href="https://images-assets.nasa.gov/audio/Ep139_Apollo 13/collection.json"
       />
     );
+  });
 
-    const audioByTestId = await screen.findByTestId(/123/i);
-    const audioByTitle = await screen.findByTitle(/This is a sample audio file/i);
-    const lblDateCreated = await screen.findByText(/06\/06\/2021/i);
+  test("renders correctly based on props", async () => {
+    const audioByTestId = await screen.findByTestId(/Ep139_Apollo 13/i);
+    const audioByTitle = await screen.findByTitle(/HWHAP Ep139 Apollo 13/i);
+    const lblDateCreated = await screen.findByText(/10\/04\/2020/i);
 
     expect(audioByTestId).toBeInTheDocument();
     expect(audioByTitle).toBeInTheDocument();

@@ -32,15 +32,11 @@ const format = {
     const { href = "/images/not-found.png" } = first;
     return href;
   },
-  getAudio: (link) => {
-
-    //get src
-    return "/audio";
+  getAudio: ({ href }) => {
+    return href;
   },
-  getVideo: (link) => {
-
-    //get src
-    return "/video";
+  getVideo: ({ href }) => {
+    return href;
   },
 };
 
@@ -61,7 +57,7 @@ const formatItem = (item) => {
   } = data;
 
   const commonProps = {
-    dateCreated: new Date(dateCreated).toLocaleDateString("en-uk"),
+    dateCreated: new Date(dateCreated).toLocaleDateString("en-GB"),
     description,
     nasaId,
     secondaryCreator,
@@ -71,13 +67,13 @@ const formatItem = (item) => {
 
   switch (mediaType) {
     case audio:
-      return { ...commonProps, ...format.getAudio() };
+      return { ...commonProps, href: format.getAudio(camelizedItem) };
     case image:
       return { ...commonProps, href: format.getImage(camelizedItem) };
     case video:
-      return { ...commonProps, ...format.getVideo() };
+      return { ...commonProps, href: format.getVideo(camelizedItem) };
     default:
-      return commonProps;
+      return;
   }
 };
 

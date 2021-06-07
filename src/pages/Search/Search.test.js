@@ -3,6 +3,8 @@ import Search from "./Search";
 import { ThemeProvider } from "styled-components";
 import mockAxios from "axios";
 
+const fnConsoleError = console.error;
+
 const setup = () => {
   const txtKeywords = screen.getByTestId(/txtKeywords/i);
   const ddlMediaType = screen.getByTestId(/ddlMediaType/i);
@@ -19,11 +21,18 @@ const setup = () => {
 
 describe("Search", () => {
   beforeEach(() => {
+    console.error = jest.fn();
+
     render(
       <ThemeProvider theme={{}}>
         <Search />
       </ThemeProvider>
     );
+  });
+
+  afterEach(() => {
+    console.error = fnConsoleError;
+    jest.clearAllMocks();
   });
 
   describe("Submitting form", () => {
@@ -60,13 +69,16 @@ describe("Search", () => {
         expect(btnSubmitSearch).toHaveTextContent("Submit");
 
         expect(mockAxios.get).toBeCalledTimes(1);
-        expect(mockAxios.get).toBeCalledWith("search", {
-          params: {
-            keywords: "apollo",
-            media_type: "image",
-            year_start: "1970",
-          },
-        });
+        expect(mockAxios.get).toBeCalledWith(
+          "https://images-api.nasa.gov/search",
+          {
+            params: {
+              keywords: "apollo",
+              media_type: "image",
+              year_start: "1970",
+            },
+          }
+        );
       });
 
       const assets = await screen.findAllByTestId(/imgAsset/i);

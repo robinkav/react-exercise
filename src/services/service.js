@@ -1,23 +1,23 @@
 import axios from "axios";
-import { NASA_BASEURL } from "../shared/constants";
-import format from './../utilities/format';
+import format from "./../utilities/format";
 
 class Service {
-  constructor() {
-    const service = axios.create({
-      baseURL: NASA_BASEURL
-    });
+  constructor(baseUrl) {
+    const service = axios.create();
     this.service = service;
   }
 
-  get(path, config, { removeEmptyFilters = false }, callback) {
-    if(config.params && removeEmptyFilters) format.removeEmptyFilters(config.params);
-    return this.service
-      .get(path, config)
-      .then((response) => callback(null, response.data))
-      .catch((error) => {
-        callback(error.response);
-      });
+  async get(path, config, { removeEmptyFilters = false }, callback) {
+    if (config.params && removeEmptyFilters)
+      format.removeEmptyFilters(config.params);
+    try {
+      const response = await this.service
+        .get(path, config);
+      return callback(null, response.data);
+    } catch (error) {
+      console.error(error.message);
+      callback(error.response);
+    }
   }
 }
 

@@ -33,11 +33,6 @@ export const AssetImage = styled.img`
   height: auto;
 `;
 
-export const AssetAudio = styled.audio`
-  width: 100%;
-  height: auto;
-`;
-
 export const AssetVideo = styled.video`
   width: 100%;
   height: auto;

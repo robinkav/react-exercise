@@ -29,7 +29,7 @@ const AssetLibrary = ({ assets }) => {
             dateCreated={asset.dateCreated}
             description={asset.description}
             title={asset.title}
-            src={asset.src}
+            href={asset.href}
             nasaId={asset.nasaId}
           />
         );
@@ -40,7 +40,7 @@ const AssetLibrary = ({ assets }) => {
             dateCreated={asset.dateCreated}
             description={asset.description}
             title={asset.title}
-            src={asset.src}
+            href={asset.href}
             nasaId={asset.nasaId}
           />
         );
